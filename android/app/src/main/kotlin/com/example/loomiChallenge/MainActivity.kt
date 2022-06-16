@@ -1,4 +1,4 @@
-package com.example.loomiFlutterBoilerplate
+package com.example.loomiChallenge
 
 import io.flutter.embedding.android.FlutterActivity
 
