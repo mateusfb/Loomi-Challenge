@@ -12,21 +12,32 @@ abstract class _AuthStoreBase with Store {
   @observable
   String? email, password;
 
+  @observable
+  bool loading = false, showPassword = false;
+
   @action
   changeEmail(String? email) => this.email = email;
 
   @action
   changePassword(String? password) => this.password = password;
 
+  @action
+  changePasswordVisibility() => showPassword = !showPassword;
+
+  @computed
   AuthCredentials get authCredentials =>
       AuthCredentials(email: this.email ?? '', password: this.password ?? '');
 
   @action
   Future<void> login() async {
     try {
+      loading = true;
       String token = await GetIt.I.get<ILoginUseCase>()(authCredentials);
+      print(token);
     } catch (e, s) {
-      printException("ExampleStore.getExample", e, s);
+      printException("AuthStore.login", e, s);
+    } finally {
+      loading = false;
     }
   }
 }

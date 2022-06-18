@@ -14,11 +14,7 @@ class SetupFlavors {
   Future<void> setup() async {
     PackageInfo packageInfo = await PackageInfo.fromPlatform();
     if (packageInfo.packageName.contains("homolog")) {
-      baseUrl = "";
     } else if (packageInfo.packageName.contains("staging")) {
-      baseUrl = "";
-    } else {
-      baseUrl = "";
-    }
+    } else {}
   }
 }

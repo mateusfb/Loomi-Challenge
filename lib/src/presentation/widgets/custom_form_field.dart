@@ -4,10 +4,23 @@ import '../../utils/custom_colors.dart';
 import '../../utils/fonts.dart';
 
 class CustomFormField extends StatelessWidget {
-  const CustomFormField({Key? key, this.label, this.obscureText})
+  const CustomFormField(
+      {Key? key,
+      this.label,
+      this.obscureText,
+      this.validator,
+      this.onChanged,
+      this.controller,
+      this.suffix,
+      this.enabled = true})
       : super(key: key);
   final String? label;
   final bool? obscureText;
+  final String? Function(String?)? validator;
+  final Function(String?)? onChanged;
+  final TextEditingController? controller;
+  final Widget? suffix;
+  final bool enabled;
 
   @override
   Widget build(BuildContext context) {
@@ -34,7 +47,12 @@ class CustomFormField extends StatelessWidget {
             ),
             fillColor: CustomColors.white.withOpacity(0.3),
             filled: true,
+            suffixIcon: suffix,
           ),
+          validator: validator,
+          onChanged: onChanged,
+          controller: controller,
+          enabled: enabled,
         ),
       ],
     );
