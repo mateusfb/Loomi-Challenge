@@ -15,7 +15,6 @@ class LoginScreen extends StatefulWidget {
   const LoginScreen({Key? key}) : super(key: key);
 
   static const routeName = "login";
-  static final _formKey = GlobalKey<FormState>();
 
   @override
   State<LoginScreen> createState() => _LoginScreenState();
@@ -58,7 +57,7 @@ class _LoginScreenState extends State<LoginScreen> {
             padding: const EdgeInsets.all(20),
             child: Center(
               child: SingleChildScrollView(
-                child: _LoginForm(formKey: LoginScreen._formKey),
+                child: _LoginForm(),
               ),
             ),
           )
@@ -69,15 +68,15 @@ class _LoginScreenState extends State<LoginScreen> {
 }
 
 class _LoginForm extends StatefulWidget {
-  _LoginForm({Key? key, required this.formKey}) : super(key: key);
-
-  GlobalKey<FormState> formKey;
+  _LoginForm({Key? key}) : super(key: key);
 
   @override
   State<_LoginForm> createState() => _LoginFormState();
 }
 
 class _LoginFormState extends State<_LoginForm> {
+  GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
 
@@ -86,7 +85,7 @@ class _LoginFormState extends State<_LoginForm> {
   @override
   Widget build(BuildContext context) {
     return Form(
-      key: widget.formKey,
+      key: _formKey,
       child: Column(
         children: [
           Row(
@@ -142,7 +141,7 @@ class _LoginFormState extends State<_LoginForm> {
               style: Fonts.loginButtonStyle,
             ),
             onPressed: () {
-              if (widget.formKey.currentState!.validate()) {
+              if (_formKey.currentState!.validate()) {
                 authStore.login();
               }
             },
