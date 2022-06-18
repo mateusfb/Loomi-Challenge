@@ -8,6 +8,8 @@ class CustomColors {
   static Color grey = HexColor("#0d2C3B8B");
   static Color lightGrey = HexColor("#f2f2f2");
   static Color purple = HexColor("#5b4da7");
+  static Color red = HexColor("#ff0c0c");
+  static Color darkRed = HexColor("#a90000");
 
   static Color loginGradientStart = HexColor("#776cb6");
   static Color loginGradientEnd = HexColor("#5b4da7");
