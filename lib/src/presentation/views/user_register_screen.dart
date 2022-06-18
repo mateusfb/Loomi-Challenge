@@ -1,26 +1,26 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
-import 'package:flutter_svg/flutter_svg.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:get_it/get_it.dart';
-import 'package:loomi_flutter_boilerplate/src/presentation/stores/auth_store.dart';
-import 'package:loomi_flutter_boilerplate/src/utils/custom_colors.dart';
-import 'package:loomi_flutter_boilerplate/src/utils/fonts.dart';
-import 'package:loomi_flutter_boilerplate/src/utils/validators.dart';
+import 'package:loomi_flutter_boilerplate/src/presentation/stores/user_store.dart';
 
+import '../../utils/custom_colors.dart';
+import '../../utils/fonts.dart';
+import '../../utils/validators.dart';
 import '../widgets/custom_elevated_button.dart';
 import '../widgets/custom_form_field.dart';
 import '../widgets/toggle_password_visibility_button.dart';
 
-class LoginScreen extends StatefulWidget {
-  const LoginScreen({Key? key}) : super(key: key);
+class UserRegisterScreen extends StatefulWidget {
+  const UserRegisterScreen({Key? key}) : super(key: key);
 
-  static const routeName = "login";
+  static const routeName = 'register_user';
 
   @override
-  State<LoginScreen> createState() => _LoginScreenState();
+  State<UserRegisterScreen> createState() => _UserRegisterScreenState();
 }
 
-class _LoginScreenState extends State<LoginScreen> {
+class _UserRegisterScreenState extends State<UserRegisterScreen> {
   @override
   Widget build(BuildContext context) {
     final screenSize = MediaQuery.of(context).size;
@@ -53,11 +53,11 @@ class _LoginScreenState extends State<LoginScreen> {
               ),
             ),
           ),
-          Padding(
-            padding: const EdgeInsets.all(20),
+          const Padding(
+            padding: EdgeInsets.all(20),
             child: Center(
               child: SingleChildScrollView(
-                child: _LoginForm(),
+                child: _RegisterUserForm(),
               ),
             ),
           )
@@ -67,20 +67,23 @@ class _LoginScreenState extends State<LoginScreen> {
   }
 }
 
-class _LoginForm extends StatefulWidget {
-  _LoginForm({Key? key}) : super(key: key);
+class _RegisterUserForm extends StatefulWidget {
+  const _RegisterUserForm({Key? key}) : super(key: key);
 
   @override
-  State<_LoginForm> createState() => _LoginFormState();
+  State<_RegisterUserForm> createState() => __RegisterUserFormState();
 }
 
-class _LoginFormState extends State<_LoginForm> {
+class __RegisterUserFormState extends State<_RegisterUserForm> {
   GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
   TextEditingController emailController = TextEditingController();
+  TextEditingController nameController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
+  TextEditingController passwordConfirmationController =
+      TextEditingController();
 
-  final authStore = GetIt.I.get<AuthStore>();
+  final userStore = GetIt.I.get<UserStore>();
 
   @override
   Widget build(BuildContext context) {
@@ -109,26 +112,48 @@ class _LoginFormState extends State<_LoginForm> {
             height: 50,
           ),
           Text(
-            "Entrar na plataforma",
+            "Criar conta",
             style: Fonts.subtitle,
           ),
           const SizedBox(height: 25),
           CustomFormField(
+            label: 'Nome',
+            controller: nameController,
+            validator: Validators.requiredValidator(attribute: 'nome'),
+            onChanged: userStore.changeName,
+          ),
+          CustomFormField(
             label: 'E-mail',
             controller: emailController,
             validator: Validators.emailValidator(),
-            onChanged: authStore.changeEmail,
+            onChanged: userStore.changeEmail,
           ),
           Observer(
             builder: (_) => CustomFormField(
               label: 'Senha',
-              obscureText: !authStore.showPassword,
+              obscureText: !userStore.showPassword,
               controller: passwordController,
               validator: Validators.passwordValidator(),
-              onChanged: authStore.changePassword,
+              onChanged: userStore.changePassword,
               suffix: TogglePasswordVisibilityButton(
-                showPassword: authStore.showPassword,
-                onTap: authStore.changePasswordVisibility,
+                showPassword: userStore.showPassword,
+                onTap: userStore.changePasswordVisibility,
+              ),
+            ),
+          ),
+          Observer(
+            builder: (_) => CustomFormField(
+              label: 'Confirmar senha',
+              enabled:
+                  userStore.password != null && userStore.password!.isNotEmpty,
+              obscureText: !userStore.showPasswordConfirmation,
+              controller: passwordConfirmationController,
+              validator: (string) => Validators.confirmPasswordValidator(
+                  userStore.password!, string ?? ''),
+              onChanged: userStore.changePasswordConfirmation,
+              suffix: TogglePasswordVisibilityButton(
+                showPassword: userStore.showPasswordConfirmation,
+                onTap: userStore.changePasswordConfirmationVisibility,
               ),
             ),
           ),
@@ -137,27 +162,18 @@ class _LoginFormState extends State<_LoginForm> {
           ),
           CustomElevatedButton(
             text: Text(
-              "Login",
+              "Criar conta",
               style: Fonts.loginButtonStyle,
             ),
             onPressed: () {
               if (_formKey.currentState!.validate()) {
-                authStore.login();
+                userStore.registerUser();
+                Navigator.pushNamedAndRemoveUntil(
+                    context, 'login', (route) => false);
               }
             },
             size: const Size(240, 48),
           ),
-          CustomElevatedButton(
-            text: Text(
-              "Criar conta",
-              style: Fonts.createAccountButtonStyle,
-            ),
-            fillColor: Colors.transparent,
-            onPressed: () {
-              Navigator.pushNamed(context, 'register_user');
-            },
-            size: const Size(240, 48),
-          )
         ],
       ),
     );
