@@ -1,9 +1,14 @@
 import 'package:dio/dio.dart';
 import 'package:get_it/get_it.dart';
 import 'package:loomi_flutter_boilerplate/src/domain/repositories/i_auth_repository.dart';
+import 'package:loomi_flutter_boilerplate/src/domain/repositories/i_user_repository.dart';
 import 'package:loomi_flutter_boilerplate/src/domain/usecases/login_usecase.dart';
+import 'package:loomi_flutter_boilerplate/src/domain/usecases/register_user_usecase.dart';
+import 'package:loomi_flutter_boilerplate/src/external/datasources/user_datasource.dart';
 import 'package:loomi_flutter_boilerplate/src/presentation/stores/auth_store.dart';
+import 'package:loomi_flutter_boilerplate/src/presentation/stores/user_store.dart';
 import 'package:loomi_flutter_boilerplate/src/presentation/usecases/i_login_usecase.dart';
+import 'package:loomi_flutter_boilerplate/src/presentation/usecases/i_register_user_usecase.dart';
 
 import '../../domain/repositories/i_example_repository.dart';
 import '../../domain/usecases/get_example_uc.dart';
@@ -18,12 +23,15 @@ void setupGetIt() {
   //Stores
   GetIt.I.registerSingleton<ExampleStore>(ExampleStore());
   GetIt.I.registerSingleton<AuthStore>(AuthStore());
+  GetIt.I.registerSingleton<UserStore>(UserStore());
 
   //Datasources
   GetIt.I.registerSingleton<IExampleRepository>(ExampleDatasource(dio));
   GetIt.I.registerSingleton<IAuthRepository>(AuthDatasource(dio));
+  GetIt.I.registerSingleton<IUserRepository>(UserDatasource(dio));
 
   //Usecases
   GetIt.I.registerSingleton<IGetExampleUseCase>(GetExampleUseCase());
   GetIt.I.registerSingleton<ILoginUseCase>(LoginUsecase());
+  GetIt.I.registerSingleton<IRegisterUserUseCase>(RegisterUserUsecase());
 }
