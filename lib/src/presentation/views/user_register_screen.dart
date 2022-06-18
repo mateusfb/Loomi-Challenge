@@ -3,6 +3,7 @@ import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get_it/get_it.dart';
 import 'package:loomi_flutter_boilerplate/src/presentation/stores/user_store.dart';
+import 'package:loomi_flutter_boilerplate/src/presentation/widgets/custom_modal_bottom_sheet.dart';
 
 import '../../utils/custom_colors.dart';
 import '../../utils/fonts.dart';
@@ -148,8 +149,10 @@ class __RegisterUserFormState extends State<_RegisterUserForm> {
                   userStore.password != null && userStore.password!.isNotEmpty,
               obscureText: !userStore.showPasswordConfirmation,
               controller: passwordConfirmationController,
-              validator: (string) => Validators.confirmPasswordValidator(
-                  userStore.password!, string ?? ''),
+              validator: (string) => userStore.password == null
+                  ? null
+                  : Validators.confirmPasswordValidator(
+                      userStore.password!, string ?? ''),
               onChanged: userStore.changePasswordConfirmation,
               suffix: TogglePasswordVisibilityButton(
                 showPassword: userStore.showPasswordConfirmation,
@@ -160,19 +163,30 @@ class __RegisterUserFormState extends State<_RegisterUserForm> {
           const SizedBox(
             height: 25,
           ),
-          CustomElevatedButton(
-            text: Text(
-              "Criar conta",
-              style: Fonts.loginButtonStyle,
+          Observer(
+            builder: (context) => CustomElevatedButton(
+              loading: userStore.loading,
+              loadingColor: CustomColors.secondary,
+              text: Text(
+                "Criar conta",
+                style: Fonts.loginButtonStyle,
+              ),
+              onPressed: () {
+                if (_formKey.currentState!.validate()) {
+                  userStore.registerUser();
+                  Navigator.pushNamedAndRemoveUntil(
+                      context, 'login', (route) => false);
+                }
+                showCustomModalBottomSheet(
+                  context,
+                  Text(
+                    'Usuário cadastrado com sucesso!',
+                    style: Fonts.bottomSheerTextStyle,
+                  ),
+                );
+              },
+              size: const Size(240, 48),
             ),
-            onPressed: () {
-              if (_formKey.currentState!.validate()) {
-                userStore.registerUser();
-                Navigator.pushNamedAndRemoveUntil(
-                    context, 'login', (route) => false);
-              }
-            },
-            size: const Size(240, 48),
           ),
         ],
       ),

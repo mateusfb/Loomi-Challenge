@@ -45,9 +45,38 @@ class CustomFormField extends StatelessWidget {
               ),
               borderSide: BorderSide.none,
             ),
+            errorBorder: OutlineInputBorder(
+              borderRadius: const BorderRadius.all(
+                Radius.circular(5),
+              ),
+              borderSide: BorderSide(
+                  color: CustomColors.darkRed.withOpacity(0.3), width: 1),
+            ),
+            focusedErrorBorder: OutlineInputBorder(
+              borderRadius: const BorderRadius.all(
+                Radius.circular(5),
+              ),
+              borderSide: BorderSide(
+                  color: CustomColors.red.withOpacity(0.3), width: 1),
+            ),
+            disabledBorder: OutlineInputBorder(
+              borderRadius: const BorderRadius.all(
+                Radius.circular(5),
+              ),
+              borderSide: BorderSide(
+                  color: CustomColors.black.withOpacity(0.3), width: 1),
+            ),
+            focusedBorder: OutlineInputBorder(
+              borderRadius: const BorderRadius.all(
+                Radius.circular(5),
+              ),
+              borderSide: BorderSide(
+                  color: CustomColors.primary.withOpacity(0.3), width: 1),
+            ),
             fillColor: CustomColors.white.withOpacity(0.3),
             filled: true,
             suffixIcon: suffix,
+            errorStyle: Fonts.errorTextStyle,
           ),
           validator: validator,
           onChanged: onChanged,

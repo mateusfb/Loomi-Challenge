@@ -16,6 +16,12 @@ class Fonts {
     color: CustomColors.primary,
   );
 
+  static final bottomSheerTextStyle = GoogleFonts.openSans(
+    fontWeight: FontWeight.bold,
+    fontSize: 20,
+    color: CustomColors.secondary,
+  );
+
   static final formLabel = GoogleFonts.openSans(
     fontWeight: FontWeight.bold,
     fontSize: 16,
@@ -38,6 +44,13 @@ class Fonts {
     fontWeight: FontWeight.w400,
     fontSize: 16,
     color: CustomColors.primary,
+  );
+
+  static final errorTextStyle = GoogleFonts.openSans(
+    fontWeight: FontWeight.w400,
+    fontSize: 12,
+    color: CustomColors.red,
+    backgroundColor: CustomColors.white.withOpacity(0.2),
   );
 
   static TextStyle headline2 = const TextStyle(

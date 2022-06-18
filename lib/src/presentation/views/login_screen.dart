@@ -135,17 +135,21 @@ class _LoginFormState extends State<_LoginForm> {
           const SizedBox(
             height: 25,
           ),
-          CustomElevatedButton(
-            text: Text(
-              "Login",
-              style: Fonts.loginButtonStyle,
+          Observer(
+            builder: (context) => CustomElevatedButton(
+              text: Text(
+                "Login",
+                style: Fonts.loginButtonStyle,
+              ),
+              onPressed: () {
+                if (_formKey.currentState!.validate()) {
+                  authStore.login();
+                }
+              },
+              size: const Size(240, 48),
+              loading: authStore.loading,
+              loadingColor: CustomColors.secondary,
             ),
-            onPressed: () {
-              if (_formKey.currentState!.validate()) {
-                authStore.login();
-              }
-            },
-            size: const Size(240, 48),
           ),
           CustomElevatedButton(
             text: Text(
