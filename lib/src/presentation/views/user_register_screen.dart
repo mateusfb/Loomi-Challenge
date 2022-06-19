@@ -176,14 +176,15 @@ class __RegisterUserFormState extends State<_RegisterUserForm> {
                   userStore.registerUser();
                   Navigator.pushNamedAndRemoveUntil(
                       context, 'login', (route) => false);
+
+                  showCustomModalBottomSheet(
+                    context,
+                    Text(
+                      'Usuário cadastrado com sucesso!',
+                      style: Fonts.bottomSheerTextStyle,
+                    ),
+                  );
                 }
-                showCustomModalBottomSheet(
-                  context,
-                  Text(
-                    'Usuário cadastrado com sucesso!',
-                    style: Fonts.bottomSheerTextStyle,
-                  ),
-                );
               },
               size: const Size(240, 48),
             ),

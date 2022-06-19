@@ -20,7 +20,7 @@ dependencies:
   mask_text_input_formatter: 2.1.0
   carousel_slider: 4.0.0
   cached_network_image: 3.2.0
-  
+  custom_navigation_bar: 0.8.2
 
   ##  utils
   shared_preferences: 2.0.9

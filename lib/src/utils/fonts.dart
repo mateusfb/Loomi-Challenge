@@ -16,6 +16,18 @@ class Fonts {
     color: CustomColors.primary,
   );
 
+  static final subtitle2 = GoogleFonts.openSans(
+    fontWeight: FontWeight.bold,
+    fontSize: 22,
+    color: CustomColors.black,
+  );
+
+  static final title2 = GoogleFonts.openSans(
+    fontWeight: FontWeight.bold,
+    fontSize: 36,
+    color: CustomColors.black,
+  );
+
   static final bottomSheerTextStyle = GoogleFonts.openSans(
     fontWeight: FontWeight.bold,
     fontSize: 20,
@@ -40,6 +52,12 @@ class Fonts {
     color: CustomColors.primary.withOpacity(0.61),
   );
 
+  static final boldButtonTextStyle = GoogleFonts.openSans(
+    fontWeight: FontWeight.w700,
+    fontSize: 16,
+    color: CustomColors.primary,
+  );
+
   static final inputTextStyle = GoogleFonts.openSans(
     fontWeight: FontWeight.w400,
     fontSize: 16,
@@ -51,6 +69,18 @@ class Fonts {
     fontSize: 12,
     color: CustomColors.red,
     backgroundColor: CustomColors.white.withOpacity(0.2),
+  );
+
+  static final navigationItemTextStyle = GoogleFonts.openSans(
+    fontWeight: FontWeight.w400,
+    fontSize: 14,
+    color: CustomColors.mediumGrey,
+  );
+
+  static final indicationCardTextStyle = GoogleFonts.openSans(
+    fontWeight: FontWeight.w400,
+    fontSize: 14,
+    color: CustomColors.black,
   );
 
   static TextStyle headline2 = const TextStyle(
