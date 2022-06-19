@@ -3,6 +3,8 @@ import 'package:loomi_flutter_boilerplate/src/domain/repositories/i_paint_reposi
 import 'package:loomi_flutter_boilerplate/src/external/models/paint.dart';
 import 'package:retrofit/retrofit.dart';
 
+import '../models/paints_response.dart';
+
 part 'paint_datasource.g.dart';
 
 @RestApi()
@@ -11,5 +13,5 @@ abstract class PaintDatasource implements IPaintRepository {
 
   @override
   @GET("/paints")
-  Future<List<Paint>> getPaints();
+  Future<PaintsResponse> getPaints();
 }

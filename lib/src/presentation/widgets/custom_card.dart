@@ -13,8 +13,7 @@ class CustomCard extends StatelessWidget {
         borderRadius: const BorderRadius.all(Radius.circular(8)),
         side: BorderSide(color: CustomColors.cardBorderColor, width: 1),
       ),
-      color: CustomColors.cardColor.withOpacity(0.4),
-      margin: const EdgeInsets.all(10),
+      color: CustomColors.cardColor,
       child: child,
     );
   }

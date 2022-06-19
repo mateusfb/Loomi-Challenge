@@ -18,13 +18,25 @@ class Fonts {
 
   static final subtitle2 = GoogleFonts.openSans(
     fontWeight: FontWeight.bold,
-    fontSize: 22,
+    fontSize: 18,
+    color: CustomColors.black,
+  );
+
+  static final subtitle3 = GoogleFonts.openSans(
+    fontWeight: FontWeight.w400,
+    fontSize: 14,
     color: CustomColors.black,
   );
 
   static final title2 = GoogleFonts.openSans(
     fontWeight: FontWeight.bold,
-    fontSize: 36,
+    fontSize: 26,
+    color: CustomColors.black,
+  );
+
+  static final title3 = GoogleFonts.openSans(
+    fontWeight: FontWeight.bold,
+    fontSize: 14,
     color: CustomColors.black,
   );
 
@@ -54,7 +66,7 @@ class Fonts {
 
   static final boldButtonTextStyle = GoogleFonts.openSans(
     fontWeight: FontWeight.w700,
-    fontSize: 16,
+    fontSize: 14,
     color: CustomColors.primary,
   );
 
@@ -79,7 +91,7 @@ class Fonts {
 
   static final indicationCardTextStyle = GoogleFonts.openSans(
     fontWeight: FontWeight.w400,
-    fontSize: 14,
+    fontSize: 13,
     color: CustomColors.black,
   );
 

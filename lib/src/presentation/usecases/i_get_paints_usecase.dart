@@ -1,5 +1,6 @@
 import '../../external/models/paint.dart';
+import '../../external/models/paints_response.dart';
 
 abstract class IGetPaintsUsecase {
-  Future<List<Paint>> call();
+  Future<PaintsResponse> call();
 }

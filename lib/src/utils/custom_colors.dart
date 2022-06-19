@@ -12,7 +12,7 @@ class CustomColors {
   static Color darkRed = HexColor("#a90000");
   static Color mediumGrey = HexColor("#A4A4A4");
 
-  static Color cardColor = HexColor("#EAEAEA");
+  static Color cardColor = HexColor("#ffffff");
   static Color cardBorderColor = HexColor("#40404026");
   static Color cardIndicationColor = HexColor("#DADADA");
 

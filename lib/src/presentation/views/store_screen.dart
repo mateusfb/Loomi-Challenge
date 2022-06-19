@@ -1,11 +1,9 @@
 import 'package:custom_navigation_bar/custom_navigation_bar.dart';
 import 'package:flutter/material.dart';
-import 'package:loomi_flutter_boilerplate/src/external/models/paint.dart';
-import 'package:loomi_flutter_boilerplate/src/presentation/widgets/custom_elevated_button.dart';
 
 import '../../utils/custom_colors.dart';
+import '../../utils/custom_icons.dart';
 import '../../utils/fonts.dart';
-import '../widgets/custom_card.dart';
 import 'pages/cart_page.dart';
 import 'pages/profile_page.dart';
 import 'pages/store_page.dart';
@@ -21,7 +19,7 @@ class StoreScreen extends StatefulWidget {
 
 class _StoreScreenState extends State<StoreScreen> {
   List<Widget> pages = [
-    const StorePage(),
+    StorePage(),
     const CartPage(),
     const ProfilePage(),
   ];
@@ -43,7 +41,7 @@ class _StoreScreenState extends State<StoreScreen> {
         items: [
           CustomNavigationBarItem(
             icon: const Icon(
-              Icons.storefront,
+              CustomIcons.shop,
             ),
             title: Text(
               'Loja',
@@ -52,7 +50,7 @@ class _StoreScreenState extends State<StoreScreen> {
           ),
           CustomNavigationBarItem(
             icon: const Icon(
-              Icons.shopping_cart_outlined,
+              CustomIcons.cart,
             ),
             title: Text(
               'Carrinho',
@@ -61,7 +59,7 @@ class _StoreScreenState extends State<StoreScreen> {
           ),
           CustomNavigationBarItem(
             icon: const Icon(
-              Icons.person_outline,
+              CustomIcons.person,
             ),
             title: Text(
               'Perfil',
@@ -115,7 +113,13 @@ class _StoreScreenState extends State<StoreScreen> {
               ),
             ),
           ),
-          SizedBox(width: screenSize.width, child: pages[_activePage]),
+          SizedBox(
+            width: screenSize.width,
+            child: Padding(
+              padding: const EdgeInsets.all(30),
+              child: pages[_activePage],
+            ),
+          ),
         ],
       ),
     );
