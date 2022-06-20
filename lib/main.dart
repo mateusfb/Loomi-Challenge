@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:loomi_flutter_boilerplate/src/presentation/views/login_screen.dart';
+import 'package:loomi_flutter_boilerplate/src/presentation/views/store_screen.dart';
+import 'package:loomi_flutter_boilerplate/src/utils/authentication.dart';
 
-import 'src/presentation/views/example_screen.dart';
 import 'src/utils/custom_colors.dart';
 import 'src/utils/routes.dart';
 import 'src/utils/setups/setup_flavors.dart';
@@ -12,11 +13,27 @@ void main() async {
   SetupFlavors setupFlavors = SetupFlavors();
   await setupFlavors.setup();
   setupGetIt();
-  runApp(const MyApp());
+
+  if (await Authentication.authenticated()) {
+    runApp(
+      const MyApp(
+        page: StoreScreen(),
+      ),
+    );
+  } else {
+    runApp(
+      const MyApp(
+        page: LoginScreen(),
+      ),
+    );
+  }
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
+  const MyApp({Key? key, required this.page}) : super(key: key);
+
+  final Widget page;
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -24,7 +41,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primaryColor: CustomColors.primary,
       ),
-      home: LoginScreen(),
+      home: page,
       routes: routes,
     );
   }

@@ -132,6 +132,18 @@ class _PaintItem extends StatelessWidget {
                 Image.network(
                   paint.image,
                   scale: 7,
+                  loadingBuilder: (context, child, loadingProgress) {
+                    if (loadingProgress == null) return child;
+                    return Center(
+                      child: CircularProgressIndicator(
+                        color: CustomColors.secondary,
+                        value: loadingProgress.expectedTotalBytes != null
+                            ? loadingProgress.cumulativeBytesLoaded /
+                                loadingProgress.expectedTotalBytes!
+                            : null,
+                      ),
+                    );
+                  },
                 ),
                 Icon(
                   Icons.arrow_forward_rounded,
@@ -160,7 +172,9 @@ class _PaintItem extends StatelessWidget {
                       'Como pintar',
                       style: Fonts.boldButtonTextStyle,
                     ),
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.pushNamed(context, 'how_to_paint');
+                    },
                     fillColor: CustomColors.secondary,
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.only(

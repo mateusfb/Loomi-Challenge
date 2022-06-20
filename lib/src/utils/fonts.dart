@@ -10,11 +10,20 @@ class Fonts {
     color: CustomColors.primary,
   );
 
+  static final instrunctionIndex = GoogleFonts.openSans(
+    fontWeight: FontWeight.bold,
+    fontSize: 32,
+    color: CustomColors.secondary,
+  );
+
   static final subtitle = GoogleFonts.openSans(
     fontWeight: FontWeight.bold,
     fontSize: 22,
     color: CustomColors.primary,
   );
+
+  static final subtitle1 = GoogleFonts.openSans(
+      fontWeight: FontWeight.bold, fontSize: 22, color: CustomColors.black);
 
   static final subtitle2 = GoogleFonts.openSans(
     fontWeight: FontWeight.bold,
@@ -92,6 +101,12 @@ class Fonts {
   static final indicationCardTextStyle = GoogleFonts.openSans(
     fontWeight: FontWeight.w400,
     fontSize: 13,
+    color: CustomColors.black,
+  );
+
+  static final description = GoogleFonts.openSans(
+    fontWeight: FontWeight.w400,
+    fontSize: 16,
     color: CustomColors.black,
   );
 

@@ -45,6 +45,8 @@ class CustomIcons {
       IconData(0xe806, fontFamily: _kFontFam, fontPackage: _kFontPkg);
   static const IconData format_paint =
       IconData(0xe807, fontFamily: _kFontFam, fontPackage: _kFontPkg);
+  static const IconData time =
+      IconData(0xe808, fontFamily: _kFontFam, fontPackage: _kFontPkg);
 
   static IconData? fromName(String name) {
     IconData? icon;
