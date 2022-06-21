@@ -9,7 +9,7 @@ class Paint {
   final double price;
   final List<Benefit> benefits;
 
-  Paint(
+  const Paint(
       {this.name = '',
       this.image = '',
       this.price = 0,
