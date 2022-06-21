@@ -20,7 +20,8 @@ dependencies:
   mask_text_input_formatter: 2.1.0
   carousel_slider: 4.0.0
   cached_network_image: 3.2.0
-  
+  custom_navigation_bar: 0.8.2
+  expandable_page_view: 1.0.14
 
   ##  utils
   shared_preferences: 2.0.9
@@ -53,4 +54,10 @@ dev_dependencies:
 flutter:
   assets:
     - assets/images/
+
   uses-material-design: true
+
+  fonts:
+    - family:  CustomIcons
+      fonts:
+        - asset: assets/fonts/CustomIcons.ttf

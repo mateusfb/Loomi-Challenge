@@ -10,14 +10,16 @@ class CustomElevatedButton extends StatelessWidget {
       this.loadingColor,
       required this.onPressed,
       this.size,
-      this.loading = false})
+      this.loading = false,
+      this.shape})
       : super(key: key);
   final Text text;
   final Color? fillColor;
   final Color? loadingColor;
-  final Function() onPressed;
+  final Function()? onPressed;
   final Size? size;
   final bool loading;
+  final OutlinedBorder? shape;
 
   @override
   Widget build(BuildContext context) {
@@ -36,12 +38,13 @@ class CustomElevatedButton extends StatelessWidget {
           backgroundColor:
               MaterialStateProperty.all(fillColor ?? CustomColors.white),
           shape: MaterialStateProperty.all(
-            const RoundedRectangleBorder(
-              borderRadius: BorderRadius.all(
-                Radius.circular(40),
-              ),
-              side: BorderSide.none,
-            ),
+            shape ??
+                const RoundedRectangleBorder(
+                  borderRadius: BorderRadius.all(
+                    Radius.circular(40),
+                  ),
+                  side: BorderSide.none,
+                ),
           ),
         ),
       ),

@@ -144,6 +144,8 @@ class _LoginFormState extends State<_LoginForm> {
               onPressed: () {
                 if (_formKey.currentState!.validate()) {
                   authStore.login();
+                  Navigator.pushNamedAndRemoveUntil(
+                      context, 'store', (route) => false);
                 }
               },
               size: const Size(240, 48),
