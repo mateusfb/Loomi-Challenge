@@ -11,11 +11,11 @@ abstract class CartDatasource implements ICartRepository {
 
   @override
   @POST('/cart')
-  Future<void> postCartItem(CartItem cartItem);
+  Future<void> postCartItem(@Body() CartItem cartItem);
 
   @override
   @DELETE('/cart/{id}')
-  Future<void> deleteCartItem(@Path() int id);
+  Future<void> deleteCartItem(@Path() String id);
 
   @override
   @GET('/cart')
@@ -24,5 +24,5 @@ abstract class CartDatasource implements ICartRepository {
   @override
   @PUT('/cart/{id}')
   Future<void> putCartItem(
-      @Path() int id, @Body() Map<String, int> mapQuantity);
+      @Path() String id, @Body() Map<String, int> mapQuantity);
 }

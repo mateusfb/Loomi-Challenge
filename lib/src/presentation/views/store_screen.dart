@@ -20,8 +20,8 @@ class StoreScreen extends StatefulWidget {
 class _StoreScreenState extends State<StoreScreen> {
   List<Widget> pages = [
     StorePage(),
-    const CartPage(),
-    const ProfilePage(),
+    CartPage(),
+    ProfilePage(),
   ];
 
   int _activePage = 0;

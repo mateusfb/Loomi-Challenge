@@ -3,7 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:get_it/get_it.dart';
 import 'package:loomi_flutter_boilerplate/src/external/models/benefit.dart';
+import 'package:loomi_flutter_boilerplate/src/external/models/cart_item.dart';
 import 'package:loomi_flutter_boilerplate/src/external/models/paint.dart';
+import 'package:loomi_flutter_boilerplate/src/presentation/stores/cart_store.dart';
 import 'package:loomi_flutter_boilerplate/src/presentation/stores/paint_store.dart';
 
 import '../../../utils/custom_colors.dart';
@@ -16,10 +18,13 @@ class StorePage extends StatelessWidget {
   StorePage({Key? key}) : super(key: key);
 
   final PaintStore paintStore = GetIt.I.get<PaintStore>();
+  final CartStore cartStore = GetIt.I.get<CartStore>();
   final PageController pageController = PageController();
 
   @override
   Widget build(BuildContext context) {
+    if (cartStore.itensInCart.isEmpty) cartStore.fetchItemsInCart();
+
     return FutureBuilder(
       future: paintStore.getPaints(),
       builder: (context, AsyncSnapshot<List<Paint>?> snapshot) {
@@ -67,7 +72,24 @@ class StorePage extends StatelessWidget {
                         'Adicionar ao carrinho',
                         style: Fonts.boldButtonTextStyle,
                       ),
-                      onPressed: () {},
+                      onPressed: () {
+                        Paint paint =
+                            paints.elementAt(paintStore.selectedPaint);
+
+                        if (cartStore.itensInCart.containsKey(paint.name) &&
+                            cartStore.itensInCart[paint.name]!.quantity < 5) {
+                          cartStore.putCartItem(
+                              cartStore.itensInCart[paint.name]!.id!,
+                              cartStore.itensInCart[paint.name]!.quantity + 1);
+                          cartStore.fetchItemsInCart();
+                        } else if (!cartStore.itensInCart
+                            .containsKey(paint.name)) {
+                          CartItem c = CartItem(paint: paint, quantity: 1);
+
+                          cartStore.postCartItem(c);
+                          cartStore.fetchItemsInCart();
+                        }
+                      },
                       fillColor: CustomColors.secondary,
                       size: const Size(0, 60),
                     ),

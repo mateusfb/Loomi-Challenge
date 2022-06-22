@@ -61,6 +61,24 @@ class Fonts {
     color: CustomColors.primary,
   );
 
+  static final cardItemTitle = GoogleFonts.openSans(
+    fontWeight: FontWeight.bold,
+    fontSize: 16,
+    color: CustomColors.black,
+  );
+
+  static final cardItemPrice = GoogleFonts.openSans(
+    fontWeight: FontWeight.bold,
+    fontSize: 14,
+    color: CustomColors.black,
+  );
+
+  static final cardItemQuantity = GoogleFonts.openSans(
+    fontWeight: FontWeight.w400,
+    fontSize: 12,
+    color: CustomColors.black,
+  );
+
   static final loginButtonStyle = GoogleFonts.openSans(
     fontWeight: FontWeight.w400,
     fontSize: 16,
