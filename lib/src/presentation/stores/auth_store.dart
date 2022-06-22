@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:get_it/get_it.dart';
 import 'package:loomi_flutter_boilerplate/src/external/models/auth_credentials_model.dart';
 import 'package:loomi_flutter_boilerplate/src/presentation/usecases/i_login_usecase.dart';
+import 'package:loomi_flutter_boilerplate/src/presentation/usecases/i_logout_usecase.dart';
 import 'package:loomi_flutter_boilerplate/src/utils/authentication.dart';
 import 'package:mobx/mobx.dart';
 
@@ -39,6 +40,19 @@ abstract class _AuthStoreBase with Store {
       String token = jsonDecode(response)['access-token'];
 
       Authentication.saveToken(token);
+    } catch (e, s) {
+      printException("AuthStore.login", e, s);
+    } finally {
+      loading = false;
+    }
+  }
+
+  @action
+  Future<void> logout() async {
+    try {
+      loading = true;
+      await GetIt.I.get<ILogoutUsecase>()();
+      Authentication.logout();
     } catch (e, s) {
       printException("AuthStore.login", e, s);
     } finally {

@@ -12,4 +12,8 @@ abstract class AuthDatasource implements IAuthRepository {
   @override
   @GET("/login")
   Future<String> login(@Body() AuthCredentials authCredentials);
+
+  @override
+  @GET("/logout")
+  Future<void> logout();
 }

@@ -85,6 +85,12 @@ class Fonts {
     color: CustomColors.secondary,
   );
 
+  static final logoutButtonStyle = GoogleFonts.openSans(
+    fontWeight: FontWeight.bold,
+    fontSize: 16,
+    color: CustomColors.secondary,
+  );
+
   static final createAccountButtonStyle = GoogleFonts.openSans(
     fontWeight: FontWeight.w400,
     fontSize: 16,
