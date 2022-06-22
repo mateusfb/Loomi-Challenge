@@ -15,6 +15,7 @@ class CustomCard extends StatelessWidget {
       ),
       color: CustomColors.cardColor,
       child: child,
+      elevation: 0,
     );
   }
 }
