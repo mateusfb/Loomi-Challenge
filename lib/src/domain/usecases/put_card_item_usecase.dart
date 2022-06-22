@@ -6,7 +6,7 @@ import 'package:loomi_flutter_boilerplate/src/presentation/usecases/i_put_cart_i
 
 class PutCartItemUsecase implements IPutCartItemUsecase {
   @override
-  Future<void> call(int id, Map<String, int> mapQuantity) async {
+  Future<void> call(String id, Map<String, int> mapQuantity) async {
     return GetIt.I.get<ICartRepository>().putCartItem(id, mapQuantity);
   }
 }

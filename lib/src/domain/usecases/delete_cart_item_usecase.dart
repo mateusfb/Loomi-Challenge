@@ -6,7 +6,7 @@ import 'package:loomi_flutter_boilerplate/src/presentation/usecases/i_post_cart_
 
 class DeleteCartItemUsecase implements IDeleteCartItemUsecase {
   @override
-  Future<void> call(int id) async {
+  Future<void> call(String id) async {
     return GetIt.I.get<ICartRepository>().deleteCartItem(id);
   }
 }

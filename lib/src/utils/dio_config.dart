@@ -1,4 +1,5 @@
 import 'package:dio/dio.dart';
+import 'package:dio_logger/dio_logger.dart';
 
 import 'authentication.dart';
 import 'setups/setup_flavors.dart';
@@ -25,6 +26,7 @@ class DioConfig {
     _dio.options.connectTimeout = 50000; //5s
     _dio.options.receiveTimeout = 30000;
     _dio.interceptors.add(CustomInterceptors());
+    _dio.interceptors.add((dioLoggerInterceptor));
     return _dio;
   }
 }

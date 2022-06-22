@@ -4,13 +4,13 @@ import 'package:loomi_flutter_boilerplate/src/external/models/paint.dart';
 
 part 'cart_item.g.dart';
 
-@JsonSerializable()
+@JsonSerializable(includeIfNull: false)
 class CartItem {
   final Paint paint;
   final int quantity;
-  final int id;
+  final String? id;
 
-  CartItem({this.paint = const Paint(), this.quantity = 0, this.id = -1});
+  CartItem({this.paint = const Paint(), this.quantity = 0, this.id});
 
   factory CartItem.fromJson(Map<String, dynamic> json) =>
       _$CartItemFromJson(json);
