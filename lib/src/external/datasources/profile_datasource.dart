@@ -1,5 +1,5 @@
 import 'package:dio/dio.dart';
-import 'package:loomi_flutter_boilerplate/src/domain/repositories/i_profile_repository.dart';
+import 'package:xtintas/src/domain/repositories/i_profile_repository.dart';
 import 'package:retrofit/http.dart';
 
 import '../models/profile.dart';

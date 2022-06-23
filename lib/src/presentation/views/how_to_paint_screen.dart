@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:loomi_flutter_boilerplate/src/utils/custom_colors.dart';
-import 'package:loomi_flutter_boilerplate/src/utils/custom_icons.dart';
-import 'package:loomi_flutter_boilerplate/src/utils/fonts.dart';
+import 'package:xtintas/src/utils/custom_colors.dart';
+import 'package:xtintas/src/utils/custom_icons.dart';
+import 'package:xtintas/src/utils/fonts.dart';
 
 class HowToPaintScreen extends StatelessWidget {
   const HowToPaintScreen({Key? key}) : super(key: key);

@@ -2,14 +2,16 @@ import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:get_it/get_it.dart';
 import 'package:intl/intl.dart';
-import 'package:loomi_flutter_boilerplate/src/domain/repositories/i_cart_repository.dart';
-import 'package:loomi_flutter_boilerplate/src/external/models/cart_item.dart';
-import 'package:loomi_flutter_boilerplate/src/presentation/stores/cart_store.dart';
-import 'package:loomi_flutter_boilerplate/src/presentation/widgets/custom_card.dart';
-import 'package:loomi_flutter_boilerplate/src/presentation/widgets/custom_dropdown_button.dart';
-import 'package:loomi_flutter_boilerplate/src/presentation/widgets/custom_elevated_button.dart';
-import 'package:loomi_flutter_boilerplate/src/utils/custom_colors.dart';
-import 'package:loomi_flutter_boilerplate/src/utils/fonts.dart';
+import 'package:xtintas/src/domain/repositories/i_cart_repository.dart';
+import 'package:xtintas/src/external/models/cart_item.dart';
+import 'package:xtintas/src/presentation/stores/cart_store.dart';
+import 'package:xtintas/src/presentation/widgets/custom_card.dart';
+import 'package:xtintas/src/presentation/widgets/custom_dropdown_button.dart';
+import 'package:xtintas/src/presentation/widgets/custom_elevated_button.dart';
+import 'package:xtintas/src/presentation/widgets/custom_image_container.dart';
+import 'package:xtintas/src/presentation/widgets/custom_loader.dart';
+import 'package:xtintas/src/utils/custom_colors.dart';
+import 'package:xtintas/src/utils/fonts.dart';
 
 class CartPage extends StatelessWidget {
   CartPage({Key? key}) : super(key: key);
@@ -38,38 +40,50 @@ class CartPage extends StatelessWidget {
                       const SizedBox(
                         height: 20,
                       ),
-                      Expanded(
-                        child: ListView.builder(
-                          itemCount: itemList.length,
-                          itemBuilder: (context, index) => _CartItemCard(
-                            cartItem: itemList.elementAt(index),
-                          ),
-                        ),
-                      ),
+                      itemList.isEmpty
+                          ? const Expanded(
+                              child: Center(
+                                child: Text('Seu carrinho está vazio.'),
+                              ),
+                            )
+                          : Expanded(
+                              child: ListView.builder(
+                                itemCount: itemList.length,
+                                itemBuilder: (context, index) => _CartItemCard(
+                                  cartItem: itemList.elementAt(index),
+                                ),
+                              ),
+                            ),
                     ],
                   ),
                 ),
-                Row(
-                  children: [
-                    Expanded(
-                      child: CustomElevatedButton(
-                        text: Text(
-                          'Confirmar compra',
-                          style: Fonts.boldButtonTextStyle,
-                        ),
-                        onPressed: () async {
-                          for (CartItem c in itemList) {
-                            await cartStore.deleteCartItem(c.id!);
-                          }
+                itemList.isEmpty
+                    ? Container()
+                    : Row(
+                        children: [
+                          Expanded(
+                            child: CustomElevatedButton(
+                              text: Text(
+                                'Confirmar compra',
+                                style: Fonts.boldButtonTextStyle,
+                              ),
+                              onPressed: () async {
+                                showLoading(context);
 
-                          cartStore.fetchItemsInCart();
-                        },
-                        fillColor: CustomColors.secondary,
-                        size: const Size(0, 60),
+                                for (CartItem c in itemList) {
+                                  await cartStore.deleteCartItem(c.id!);
+                                }
+
+                                await cartStore.fetchItemsInCart();
+
+                                Navigator.pop(context);
+                              },
+                              fillColor: CustomColors.secondary,
+                              size: const Size(0, 60),
+                            ),
+                          ),
+                        ],
                       ),
-                    ),
-                  ],
-                ),
               ],
             );
           } else if (snapshot.hasError) {
@@ -110,8 +124,12 @@ class _CartItemCard extends StatelessWidget {
             alignment: Alignment.topRight,
             child: IconButton(
               onPressed: () async {
+                showLoading(context);
+
                 await cartStore.deleteCartItem(cartItem.id!);
                 await cartStore.fetchItemsInCart();
+
+                Navigator.pop(context);
               },
               icon: const Icon(Icons.close),
             ),
@@ -120,21 +138,13 @@ class _CartItemCard extends StatelessWidget {
             padding: const EdgeInsets.all(20),
             child: Row(
               children: [
-                Image.network(
-                  cartItem.paint.image,
+                CustomImageContainer(
+                  imageUrl: cartItem.paint.image,
                   scale: 10,
-                  loadingBuilder: (context, child, loadingProgress) {
-                    if (loadingProgress == null) return child;
-                    return Center(
-                      child: CircularProgressIndicator(
-                        color: CustomColors.secondary,
-                        value: loadingProgress.expectedTotalBytes != null
-                            ? loadingProgress.cumulativeBytesLoaded /
-                                loadingProgress.expectedTotalBytes!
-                            : null,
-                      ),
-                    );
-                  },
+                  loadingColor: CustomColors.secondary,
+                ),
+                const SizedBox(
+                  width: 10,
                 ),
                 Flexible(
                   child: Column(
@@ -163,9 +173,13 @@ class _CartItemCard extends StatelessWidget {
                                       child: Text(entry.key)))
                                   .toList(),
                               onChanged: (value) async {
+                                showLoading(context);
+
                                 await cartStore.putCartItem(
                                     cartItem.id!, value as int);
                                 await cartStore.fetchItemsInCart();
+
+                                Navigator.pop(context);
                               },
                               icon: Icons.keyboard_arrow_down_rounded,
                               color: CustomColors.mediumGrey,

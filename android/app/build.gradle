@@ -43,7 +43,7 @@ android {
 
     defaultConfig {
         // TODO: Specify your own unique Application ID (https://developer.android.com/studio/build/application-id.html).
-        applicationId "com.example.loomiFlutterBoilerplate"
+        applicationId "com.example.loomiChallenge"
         minSdkVersion 16
         targetSdkVersion 30
         versionCode flutterVersionCode.toInteger()
@@ -54,27 +54,30 @@ android {
     productFlavors {
         production {
             dimension "app"
-            applicationId "com.example.loomiFlutterBoilerplate"
+            applicationId "com.example.loomiChallenge"
             versionCode flutterVersionCode.toInteger()
             versionName flutterVersionName
             multiDexEnabled true
         }
         homolog {
             dimension "app"
-            applicationId "com.example.loomiFlutterBoilerplate.homolog"
+            applicationId "com.example.loomiChallenge.homolog"
             versionCode flutterVersionCode.toInteger()
             versionName flutterVersionName
             multiDexEnabled true
         }
         staging {
             dimension "app"
-            applicationId "com.example.loomiFlutterBoilerplate.staging"
+            applicationId "com.example.loomiChallenge.staging"
             versionCode flutterVersionCode.toInteger()
             versionName flutterVersionName
             multiDexEnabled true
         }
     }
 
+    lintOptions {
+        checkReleaseBuilds false                                                                                                 
+    }   
 
     buildTypes {
         release {
@@ -83,6 +86,8 @@ android {
             signingConfig signingConfigs.debug
         }
     }
+
+    ndkVersion "25.0.8221429"
 }
 
 flutter {

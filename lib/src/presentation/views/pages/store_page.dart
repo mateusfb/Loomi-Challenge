@@ -2,11 +2,13 @@ import 'package:expandable_page_view/expandable_page_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:get_it/get_it.dart';
-import 'package:loomi_flutter_boilerplate/src/external/models/benefit.dart';
-import 'package:loomi_flutter_boilerplate/src/external/models/cart_item.dart';
-import 'package:loomi_flutter_boilerplate/src/external/models/paint.dart';
-import 'package:loomi_flutter_boilerplate/src/presentation/stores/cart_store.dart';
-import 'package:loomi_flutter_boilerplate/src/presentation/stores/paint_store.dart';
+import 'package:xtintas/src/external/models/benefit.dart';
+import 'package:xtintas/src/external/models/cart_item.dart';
+import 'package:xtintas/src/external/models/paint.dart';
+import 'package:xtintas/src/presentation/stores/cart_store.dart';
+import 'package:xtintas/src/presentation/stores/paint_store.dart';
+import 'package:xtintas/src/presentation/widgets/custom_image_container.dart';
+import 'package:xtintas/src/presentation/widgets/custom_loader.dart';
 
 import '../../../utils/custom_colors.dart';
 import '../../../utils/custom_icons.dart';
@@ -30,6 +32,7 @@ class StorePage extends StatelessWidget {
       builder: (context, AsyncSnapshot<List<Paint>?> snapshot) {
         if (snapshot.hasData) {
           List<Paint> paints = snapshot.data!;
+          paintStore.changeSelectedPaint(0);
 
           return Column(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -72,23 +75,27 @@ class StorePage extends StatelessWidget {
                         'Adicionar ao carrinho',
                         style: Fonts.boldButtonTextStyle,
                       ),
-                      onPressed: () {
+                      onPressed: () async {
                         Paint paint =
                             paints.elementAt(paintStore.selectedPaint);
 
+                        showLoading(context);
+
                         if (cartStore.itensInCart.containsKey(paint.name) &&
                             cartStore.itensInCart[paint.name]!.quantity < 5) {
-                          cartStore.putCartItem(
+                          await cartStore.putCartItem(
                               cartStore.itensInCart[paint.name]!.id!,
                               cartStore.itensInCart[paint.name]!.quantity + 1);
-                          cartStore.fetchItemsInCart();
+                          await cartStore.fetchItemsInCart();
                         } else if (!cartStore.itensInCart
                             .containsKey(paint.name)) {
                           CartItem c = CartItem(paint: paint, quantity: 1);
 
-                          cartStore.postCartItem(c);
-                          cartStore.fetchItemsInCart();
+                          await cartStore.postCartItem(c);
+                          await cartStore.fetchItemsInCart();
                         }
+
+                        Navigator.pop(context);
                       },
                       fillColor: CustomColors.secondary,
                       size: const Size(0, 60),
@@ -142,6 +149,9 @@ class _PaintItem extends StatelessWidget {
                 ),
               ),
             ),
+            const SizedBox(
+              height: 5,
+            ),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               crossAxisAlignment: CrossAxisAlignment.center,
@@ -151,21 +161,10 @@ class _PaintItem extends StatelessWidget {
                   color: CustomColors.cardIndicationColor,
                   size: 35,
                 ),
-                Image.network(
-                  paint.image,
+                CustomImageContainer(
+                  imageUrl: paint.image,
                   scale: 7,
-                  loadingBuilder: (context, child, loadingProgress) {
-                    if (loadingProgress == null) return child;
-                    return Center(
-                      child: CircularProgressIndicator(
-                        color: CustomColors.secondary,
-                        value: loadingProgress.expectedTotalBytes != null
-                            ? loadingProgress.cumulativeBytesLoaded /
-                                loadingProgress.expectedTotalBytes!
-                            : null,
-                      ),
-                    );
-                  },
+                  loadingColor: CustomColors.secondary,
                 ),
                 Icon(
                   Icons.arrow_forward_rounded,

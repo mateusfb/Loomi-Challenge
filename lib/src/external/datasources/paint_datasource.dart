@@ -1,6 +1,6 @@
 import 'package:dio/dio.dart';
-import 'package:loomi_flutter_boilerplate/src/domain/repositories/i_paint_repository.dart';
-import 'package:loomi_flutter_boilerplate/src/external/models/paint.dart';
+import 'package:xtintas/src/domain/repositories/i_paint_repository.dart';
+import 'package:xtintas/src/external/models/paint.dart';
 import 'package:retrofit/retrofit.dart';
 
 import '../models/paints_response.dart';

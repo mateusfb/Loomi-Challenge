@@ -1,5 +1,5 @@
 import 'package:get_it/get_it.dart';
-import 'package:loomi_flutter_boilerplate/src/presentation/usecases/i_logout_usecase.dart';
+import 'package:xtintas/src/presentation/usecases/i_logout_usecase.dart';
 
 import '../repositories/i_auth_repository.dart';
 

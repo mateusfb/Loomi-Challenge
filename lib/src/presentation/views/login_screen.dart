@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get_it/get_it.dart';
-import 'package:loomi_flutter_boilerplate/src/presentation/stores/auth_store.dart';
-import 'package:loomi_flutter_boilerplate/src/utils/custom_colors.dart';
-import 'package:loomi_flutter_boilerplate/src/utils/fonts.dart';
-import 'package:loomi_flutter_boilerplate/src/utils/validators.dart';
+import 'package:xtintas/src/presentation/stores/auth_store.dart';
+import 'package:xtintas/src/utils/custom_colors.dart';
+import 'package:xtintas/src/utils/fonts.dart';
+import 'package:xtintas/src/utils/validators.dart';
 
 import '../widgets/custom_elevated_button.dart';
 import '../widgets/custom_form_field.dart';
