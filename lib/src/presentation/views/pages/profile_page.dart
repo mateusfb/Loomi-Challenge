@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
-import 'package:loomi_flutter_boilerplate/src/presentation/stores/profile_store.dart';
-import 'package:loomi_flutter_boilerplate/src/presentation/widgets/custom_card.dart';
+import 'package:xtintas/src/presentation/stores/profile_store.dart';
+import 'package:xtintas/src/presentation/widgets/custom_card.dart';
 
 import '../../../external/models/profile.dart';
 import '../../../utils/custom_colors.dart';

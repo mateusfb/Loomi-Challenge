@@ -1,10 +1,10 @@
 import 'package:get_it/get_it.dart';
-import 'package:loomi_flutter_boilerplate/src/external/models/cart_item.dart';
-import 'package:loomi_flutter_boilerplate/src/presentation/usecases/i_delete_cart_item_usecase.dart';
-import 'package:loomi_flutter_boilerplate/src/presentation/usecases/i_get_cart_item_list_usecase.dart';
-import 'package:loomi_flutter_boilerplate/src/presentation/usecases/i_post_cart_item_usecase.dart';
-import 'package:loomi_flutter_boilerplate/src/presentation/usecases/i_put_cart_item_usecase.dart';
-import 'package:loomi_flutter_boilerplate/src/utils/misc.dart';
+import 'package:xtintas/src/external/models/cart_item.dart';
+import 'package:xtintas/src/presentation/usecases/i_delete_cart_item_usecase.dart';
+import 'package:xtintas/src/presentation/usecases/i_get_cart_item_list_usecase.dart';
+import 'package:xtintas/src/presentation/usecases/i_post_cart_item_usecase.dart';
+import 'package:xtintas/src/presentation/usecases/i_put_cart_item_usecase.dart';
+import 'package:xtintas/src/utils/misc.dart';
 import 'package:mobx/mobx.dart';
 part 'cart_store.g.dart';
 

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:loomi_flutter_boilerplate/src/presentation/views/login_screen.dart';
-import 'package:loomi_flutter_boilerplate/src/presentation/views/store_screen.dart';
-import 'package:loomi_flutter_boilerplate/src/utils/authentication.dart';
+import 'package:xtintas/src/presentation/views/login_screen.dart';
+import 'package:xtintas/src/presentation/views/store_screen.dart';
+import 'package:xtintas/src/utils/authentication.dart';
 
 import 'src/utils/custom_colors.dart';
 import 'src/utils/routes.dart';

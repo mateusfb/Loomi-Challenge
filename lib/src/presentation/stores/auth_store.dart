@@ -1,10 +1,10 @@
 import 'dart:convert';
 
 import 'package:get_it/get_it.dart';
-import 'package:loomi_flutter_boilerplate/src/external/models/auth_credentials_model.dart';
-import 'package:loomi_flutter_boilerplate/src/presentation/usecases/i_login_usecase.dart';
-import 'package:loomi_flutter_boilerplate/src/presentation/usecases/i_logout_usecase.dart';
-import 'package:loomi_flutter_boilerplate/src/utils/authentication.dart';
+import 'package:xtintas/src/external/models/auth_credentials_model.dart';
+import 'package:xtintas/src/presentation/usecases/i_login_usecase.dart';
+import 'package:xtintas/src/presentation/usecases/i_logout_usecase.dart';
+import 'package:xtintas/src/utils/authentication.dart';
 import 'package:mobx/mobx.dart';
 
 import '../../utils/misc.dart';

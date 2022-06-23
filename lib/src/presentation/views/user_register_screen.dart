@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get_it/get_it.dart';
-import 'package:loomi_flutter_boilerplate/src/presentation/stores/user_store.dart';
-import 'package:loomi_flutter_boilerplate/src/presentation/widgets/custom_modal_bottom_sheet.dart';
+import 'package:xtintas/src/presentation/stores/user_store.dart';
+import 'package:xtintas/src/presentation/widgets/custom_modal_bottom_sheet.dart';
 
 import '../../utils/custom_colors.dart';
 import '../../utils/fonts.dart';

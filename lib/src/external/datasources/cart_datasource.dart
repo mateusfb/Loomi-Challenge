@@ -1,6 +1,6 @@
 import 'package:dio/dio.dart';
-import 'package:loomi_flutter_boilerplate/src/domain/repositories/i_cart_repository.dart';
-import 'package:loomi_flutter_boilerplate/src/external/models/cart_item.dart';
+import 'package:xtintas/src/domain/repositories/i_cart_repository.dart';
+import 'package:xtintas/src/external/models/cart_item.dart';
 import 'package:retrofit/retrofit.dart';
 
 part 'cart_datasource.g.dart';

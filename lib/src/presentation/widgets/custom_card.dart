@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:loomi_flutter_boilerplate/src/utils/custom_colors.dart';
+import 'package:xtintas/src/utils/custom_colors.dart';
 
 class CustomCard extends StatelessWidget {
   CustomCard({Key? key, this.child}) : super(key: key);
@@ -13,7 +13,7 @@ class CustomCard extends StatelessWidget {
         borderRadius: const BorderRadius.all(Radius.circular(8)),
         side: BorderSide(color: CustomColors.cardBorderColor, width: 1),
       ),
-      color: CustomColors.cardColor,
+      color: CustomColors.cardColor.withOpacity(0.5),
       child: child,
       elevation: 0,
     );

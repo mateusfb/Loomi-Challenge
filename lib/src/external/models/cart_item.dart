@@ -1,6 +1,6 @@
 import 'package:json_annotation/json_annotation.dart';
 
-import 'package:loomi_flutter_boilerplate/src/external/models/paint.dart';
+import 'package:xtintas/src/external/models/paint.dart';
 
 part 'cart_item.g.dart';
 
