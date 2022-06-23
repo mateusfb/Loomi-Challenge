@@ -1,9 +1,137 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
+
+import 'custom_colors.dart';
 
 class Fonts {
-  static TextStyle headline1 = const TextStyle(
+  static final title = GoogleFonts.openSans(
+    fontWeight: FontWeight.bold,
+    fontSize: 36,
+    color: CustomColors.primary,
+  );
+
+  static final instrunctionIndex = GoogleFonts.openSans(
+    fontWeight: FontWeight.bold,
     fontSize: 32,
+    color: CustomColors.secondary,
+  );
+
+  static final subtitle = GoogleFonts.openSans(
+    fontWeight: FontWeight.bold,
+    fontSize: 22,
+    color: CustomColors.primary,
+  );
+
+  static final subtitle1 = GoogleFonts.openSans(
+      fontWeight: FontWeight.bold, fontSize: 22, color: CustomColors.black);
+
+  static final subtitle2 = GoogleFonts.openSans(
+    fontWeight: FontWeight.bold,
+    fontSize: 18,
+    color: CustomColors.black,
+  );
+
+  static final subtitle3 = GoogleFonts.openSans(
+    fontWeight: FontWeight.w400,
+    fontSize: 14,
+    color: CustomColors.black,
+  );
+
+  static final title2 = GoogleFonts.openSans(
+    fontWeight: FontWeight.bold,
+    fontSize: 26,
+    color: CustomColors.black,
+  );
+
+  static final title3 = GoogleFonts.openSans(
+    fontWeight: FontWeight.bold,
+    fontSize: 14,
+    color: CustomColors.black,
+  );
+
+  static final bottomSheerTextStyle = GoogleFonts.openSans(
+    fontWeight: FontWeight.bold,
+    fontSize: 20,
+    color: CustomColors.secondary,
+  );
+
+  static final formLabel = GoogleFonts.openSans(
+    fontWeight: FontWeight.bold,
+    fontSize: 16,
+    color: CustomColors.primary,
+  );
+
+  static final cardItemTitle = GoogleFonts.openSans(
+    fontWeight: FontWeight.bold,
+    fontSize: 16,
+    color: CustomColors.black,
+  );
+
+  static final cardItemPrice = GoogleFonts.openSans(
+    fontWeight: FontWeight.bold,
+    fontSize: 14,
+    color: CustomColors.black,
+  );
+
+  static final cardItemQuantity = GoogleFonts.openSans(
+    fontWeight: FontWeight.w400,
+    fontSize: 12,
+    color: CustomColors.black,
+  );
+
+  static final loginButtonStyle = GoogleFonts.openSans(
+    fontWeight: FontWeight.w400,
+    fontSize: 16,
+    color: CustomColors.secondary,
+  );
+
+  static final logoutButtonStyle = GoogleFonts.openSans(
+    fontWeight: FontWeight.bold,
+    fontSize: 16,
+    color: CustomColors.secondary,
+  );
+
+  static final createAccountButtonStyle = GoogleFonts.openSans(
+    fontWeight: FontWeight.w400,
+    fontSize: 16,
+    color: CustomColors.primary.withOpacity(0.61),
+  );
+
+  static final boldButtonTextStyle = GoogleFonts.openSans(
     fontWeight: FontWeight.w700,
+    fontSize: 14,
+    color: CustomColors.primary,
+  );
+
+  static final inputTextStyle = GoogleFonts.openSans(
+    fontWeight: FontWeight.w400,
+    fontSize: 16,
+    color: CustomColors.primary,
+  );
+
+  static final errorTextStyle = GoogleFonts.openSans(
+    fontWeight: FontWeight.w400,
+    fontSize: 12,
+    color: CustomColors.red,
+    backgroundColor: CustomColors.white.withOpacity(0.2),
+  );
+
+  static final navigationItemTextStyle = GoogleFonts.openSans(
+    fontWeight: FontWeight.w400,
+    fontSize: 14,
+    color: CustomColors.mediumGrey,
+  );
+
+  static final indicationCardTextStyle = GoogleFonts.openSans(
+    fontWeight: FontWeight.w400,
+    fontSize: 13,
+    color: CustomColors.black,
+  );
+
+  static final description = GoogleFonts.openSans(
+    fontWeight: FontWeight.w400,
+    fontSize: 16,
+    color: CustomColors.black,
   );
 
   static TextStyle headline2 = const TextStyle(
